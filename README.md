@@ -85,7 +85,7 @@ Debe aparecer `USUARIO_RESTRINGIDO`.
 
 **Evidencia 1:** guarda una captura donde se vea que has comprobado las dos conexiones. Archivo: `images/01_conexiones.png`.
 
-![Evidencia 1: comprobación de conexiones](images/01_conexiones.png)
+![Evidencia 1: comprobación de conexiones](images/01_conexiones.PNG)
 
 Si una conexión no funciona, no cambies contraseñas ni recrees usuarios durante la práctica. Comprueba que usas la conexión del Reto 2 y pide ayuda si sigue fallando.
 
@@ -115,7 +115,7 @@ Crea una tabla con cinco columnas, inicialmente vacía.
 
 **Evidencia 2:** captura el mensaje de creación correcta de la tabla. Archivo: `images/02_tabla_creada.png`.
 
-![Evidencia 2: tabla creada](images/02_tabla_creada.png)
+![Evidencia 2: tabla creada](images/02_tabla_creada.PNG)
 
 ### Paso 2. Insertar datos ficticios
 
@@ -140,7 +140,7 @@ SELECT * FROM suscriptores_lab;
 
 **Evidencia 3:** captura la consulta con las cinco filas y las cinco columnas visibles. Archivo: `images/03_datos_insertados.png`.
 
-![Evidencia 3: datos de la tabla](images/03_datos_insertados.png)
+![Evidencia 3: datos de la tabla](images/03_datos_insertados.PNG)
 
 Si aparece un error indicando que la tabla ya existe, no la borres ni repitas los `INSERT`. Comprueba primero si la tabla ya contiene datos y consulta al profesor.
 
@@ -156,7 +156,7 @@ SELECT * FROM admin_udit.suscriptores_lab;
 
 **Evidencia 4:** captura el error al intentar consultar la tabla con `usuario_restringido`. Archivo: `images/04_acceso_denegado_tabla.png`.
 
-![Evidencia 4: acceso denegado a la tabla](images/04_acceso_denegado_tabla.png)
+![Evidencia 4: acceso denegado a la tabla](images/04_acceso_denegado_tabla.PNG)
 
 Si aparecen los datos, comprueba que la conexión activa es realmente `USUARIO_RESTRINGIDO`. Si lo es, no continúes hasta que el profesor revise los permisos existentes.
 
@@ -190,7 +190,7 @@ Permite a `usuario_restringido` consultar la vista, pero no concede acceso direc
 
 **Evidencia 5:** captura la creación de la vista y la concesión del permiso. Puedes hacer una captura por comando si no caben los dos resultados. Guarda la evidencia con el nombre `images/05_vista_creada_y_permiso.png`.
 
-![Evidencia 5: vista creada y permiso concedido](images/05_vista_creada_y_permiso.png)
+![Evidencia 5: vista creada y permiso concedido](images/05_vista_creada_y_permiso.PNG)
 
 ### Paso 3. Probar la vista
 
@@ -206,7 +206,7 @@ SELECT * FROM admin_udit.v_suscriptores_soporte;
 
 **Evidencia 6:** captura el resultado correcto de la consulta a la vista. Archivo: `images/06_consulta_vista_ok.png`.
 
-![Evidencia 6: consulta correcta de la vista](images/06_consulta_vista_ok.png)
+![Evidencia 6: consulta correcta de la vista](images/06_consulta_vista_ok.PNG)
 
 Después:
 
@@ -218,7 +218,7 @@ SELECT email FROM admin_udit.v_suscriptores_soporte;
 
 **Evidencia 7:** captura el error al consultar `EMAIL` desde la vista. Archivo: `images/07_error_email_vista.png`.
 
-![Evidencia 7: columna EMAIL no disponible en la vista](images/07_error_email_vista.png)
+![Evidencia 7: columna EMAIL no disponible en la vista](images/07_error_email_vista.PNG)
 
 Por último:
 
@@ -230,7 +230,7 @@ SELECT * FROM admin_udit.suscriptores_lab;
 
 **Evidencia 8:** captura el intento de consultar la tabla original como `usuario_restringido`. Archivo: `images/08_acceso_denegado_tabla_final.png`.
 
-![Evidencia 8: acceso denegado a la tabla original](images/08_acceso_denegado_tabla_final.png)
+![Evidencia 8: acceso denegado a la tabla original](images/08_acceso_denegado_tabla_final.PNG)
 
 ### Qué has demostrado
 
@@ -267,7 +267,7 @@ Debe mostrar las mismas cinco filas y cuatro columnas. El sinónimo solo evita e
 
 **Evidencia opcional 9:** si has podido crear y consultar el sinónimo, guarda una captura como `images/09_sinonimo_opcional.png`.
 
-![Evidencia opcional 9: consulta mediante sinónimo](images/09_sinonimo_opcional.png)
+![Evidencia opcional 9: consulta mediante sinónimo]
 
 **No crearemos un sinónimo público en esta sesión.** Lo dejamos para cuando se pueda preparar y comprobar ese paso.
 
@@ -276,9 +276,14 @@ Debe mostrar las mismas cinco filas y cuatro columnas. El sinónimo solo evita e
 Responde con tus propias palabras:
 
 1. ¿Qué diferencia hay entre una tabla y una vista?
+Tabla: Es un objeto físico que almacena los datos de forma permanente en la base de datos y ocupa espacio físico en disco.
+Vista: Es un objeto virtual (una consulta SQL almacenada con un nombre). No almacena datos por sí misma, sino que muestra en tiempo real los datos procedentes de la tabla o tablas subyacentes.
 2. ¿Por qué `usuario_restringido` puede consultar la vista, pero no la tabla?
+Porque en Oracle los permisos se conceden de forma independiente objeto por objeto. Al ejecutar el GRANT SELECT sobre la vista, le otorgamos privilegios únicamente para consultar ese objeto específico, pero no sobre la tabla original (suscriptores_lab), lo que permite proteger los datos y columnas sensibles.
 3. ¿Por qué pedir `EMAIL` a la vista produce `ORA-00904`?
+El error ORA-00904 (invalid identifier) se produce porque la columna email fue excluida deliberadamente al definir la estructura de la vista v_suscriptores_soporte. Para la base de datos, esa columna simplemente no existe en el contexto de la vista.   
 4. ¿Un sinónimo concede permisos? ¿Por qué?
+No. Un sinónimo es únicamente un alias o nombre alternativo (un "atajo" o acceso directo) para referirse a un objeto. No otorga ningún tipo de privilegio por sí mismo; si el usuario no tiene permisos previos concedidos sobre el objeto al que apunta el sinónimo, la consulta seguirá fallando.
 
 ## 9. Errores habituales
 
@@ -295,14 +300,14 @@ Responde con tus propias palabras:
 
 ## 10. Checklist final
 
-- [ ] He comprobado las conexiones de `admin_udit` y `usuario_restringido`.
-- [ ] He consultado la tabla con cinco filas como `admin_udit`.
-- [ ] He comprobado el acceso denegado a la tabla como `usuario_restringido`.
-- [ ] He creado la vista y concedido `SELECT`.
-- [ ] He consultado la vista con cinco filas y cuatro columnas.
-- [ ] He comprobado por qué `EMAIL` produce `ORA-00904`.
-- [ ] Puedo explicar por qué un sinónimo no concede permisos.
-- [ ] No he modificado usuarios, contraseñas ni configuración del servidor.
+- [x] He comprobado las conexiones de `admin_udit` y `usuario_restringido`.
+- [x] He consultado la tabla con cinco filas como `admin_udit`.
+- [x] He comprobado el acceso denegado a la tabla como `usuario_restringido`.
+- [x] He creado la vista y concedido `SELECT`.
+- [x] He consultado la vista con cinco filas y cuatro columnas.
+- [x] He comprobado por qué `EMAIL` produce `ORA-00904`.
+- [x] Puedo explicar por qué un sinónimo no concede permisos.
+- [x] No he modificado usuarios, contraseñas ni configuración del servidor.
 
 ## Cierre
 
